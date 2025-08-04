@@ -38,4 +38,4 @@
 - https://floating-ui.com/ - для работы с popover, popup, их скролл и т.п.
   
 # Bundle
-https://bundlephobia.com/
+https://bundlephobia.com/ - узнай сколько займет библиотека в бандле
