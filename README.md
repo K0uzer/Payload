@@ -34,3 +34,6 @@
 
 # UI-kit
 headless-ui - https://headlessui.com/
+
+# Bundle
+https://bundlephobia.com/
