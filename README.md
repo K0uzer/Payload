@@ -33,8 +33,8 @@
 
 
 # UI-kit
-headless-ui - https://headlessui.com/
-https://react-spectrum.adobe.com/react-aria/index.html - hooks, functions
+- headless-ui - https://headlessui.com/
+- https://react-spectrum.adobe.com/react-aria/index.html - hooks, functions
 
 # Bundle
 https://bundlephobia.com/
