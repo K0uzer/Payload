@@ -33,7 +33,7 @@
 
 
 # UI-kit
-- headless-ui - https://headlessui.com/
+- https://headlessui.com/ - headless-ui
 - https://react-spectrum.adobe.com/react-aria/index.html - hooks, functions
 - https://floating-ui.com/ - для работы с popover, popup, их скролл и т.п.
   
