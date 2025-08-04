@@ -819,3 +819,140 @@ https://bundlephobia.com/ - узнай сколько займет библио�
     
     export default ErrorBoundary;
 
+## Кастомный хук Троттлинг - useThrottle
+    import { useCallback, useRef } from 'react';
+    
+    export function useThrottle(callback: (...args: any[]) => void, delay: number) {
+        const throttleRef = useRef(false);
+    
+        return useCallback((...args: any[]) => {
+            if (!throttleRef.current) {
+                callback(...args);
+                throttleRef.current = true;
+    
+                setTimeout(() => {
+                    throttleRef.current = false;
+                }, delay);
+            }
+        }, [callback, delay]);
+    }
+
+## Кастомный хук бесконечный скролл - useInfiniteScroll
+    import { MutableRefObject, useEffect, useRef } from 'react';
+    
+    export interface UseInfiniteScrollOptions {
+        callback?: () => void;
+        triggerRef: MutableRefObject<HTMLElement>;
+        wrapperRef: MutableRefObject<HTMLElement>;
+    }
+    
+    export function useInfiniteScroll({ callback, wrapperRef, triggerRef }: UseInfiniteScrollOptions) {
+        const observer = useRef<IntersectionObserver | null>(null);
+    
+        useEffect(() => {
+            const wrapperElement = wrapperRef.current;
+            const triggerElement = triggerRef.current;
+    
+            if (callback) {
+                const options = {
+                    root: wrapperElement,
+                    rootMargin: '0px',
+                    threshold: 1.0,
+                };
+    
+                observer.current = new IntersectionObserver(([entry]) => {
+                    if (entry.isIntersecting) {
+                        callback();
+                    }
+                }, options);
+    
+                observer.current.observe(triggerElement);
+            }
+    
+            return () => {
+                if (observer.current && triggerElement) {
+                    // eslint-disable-next-line react-hooks/exhaustive-deps
+                    observer.current.unobserve(triggerElement);
+                }
+            };
+        }, [callback, triggerRef, wrapperRef]);
+    }
+
+## Кастомный хук эффекта наведения - useHover
+    import { useCallback, useMemo, useState } from 'react';
+    
+    interface UseHoverBind {
+        onMouseEnter: () => void;
+        onMouseLeave: () => void;
+    }
+    
+    type UseHoverResult = [boolean, UseHoverBind]
+    
+    export const useHover = () => {
+        const [isHover, setIsHover] = useState(false);
+    
+        const onMouseEnter = useCallback(() => {
+            setIsHover(true);
+        }, []);
+    
+        const onMouseLeave = useCallback(() => {
+            setIsHover(false);
+        }, []);
+    
+        return useMemo(() => [
+            isHover,
+            {
+                onMouseEnter,
+                onMouseLeave,
+            },
+        ], [isHover, onMouseEnter, onMouseLeave]);
+    };
+
+  ## Кастомный хук debounce - useDebounce
+    import { MutableRefObject, useCallback, useRef } from 'react';
+    
+    export function useDebounce(callback: (...args: any[]) => void, delay: number) {
+        const timer = useRef() as MutableRefObject<any>;
+    
+        return useCallback((...args: any[]) => {
+            if (timer.current) {
+                clearTimeout(timer.current);
+            }
+            timer.current = setTimeout(() => {
+                callback(...args);
+            }, delay);
+        }, [callback, delay]);
+    }
+
+## Функция для наложения стилей на модуль - classNames
+    export type Mods = Record<string, boolean | string | undefined>
+    
+    export function classNames(
+        cls: string,
+        mods: Mods = {},
+        additional: Array<string | undefined> = [],
+    ): string {
+        return [
+            cls,
+            ...additional.filter(Boolean),
+            ...Object.entries(mods)
+                .filter(([_, value]) => Boolean(value))
+                .map(([className]) => className),
+        ]
+            .join(' ');
+    }
+
+ ### Как ей пользоваться?
+    export const ArticleCodeBlockComponent = memo((props: ArticleCodeBlockComponentProps) => {
+        const { className, block } = props;
+        const { t } = useTranslation();
+    
+        return (
+            <div className={classNames(cls.ArticleCodeBlockComponent, {}, [className])}>
+                <Code text={block.code} />
+            </div>
+        );
+    });
+
+## 
+
