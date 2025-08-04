@@ -135,7 +135,8 @@ https://bundlephobia.com/ - узнай сколько займет библио�
     CircleDark.decorators = [ThemeDecorator(Theme.DARK)];
 
 ## Jests тесты: 
-    ### Конфиг JEST:
+
+ ### Конфиг JEST:
     import path from 'path';
     
     export default {
@@ -218,12 +219,15 @@ https://bundlephobia.com/ - узнай сколько займет библио�
 ## Ассинхронная подгрузка:
 ### Статьи:
 ### ActiclePage.async.tsx:
+
     import { lazy } from 'react';
     
     export const ArticlesPageAsync = lazy(
         () => import('./ArticlesPage'),
     );
+    
 ## ActiclePage.tsx:
+
     import { classNames } from 'shared/lib/classNames/classNames';
     import { useTranslation } from 'react-i18next';
     import { memo, useCallback } from 'react';
@@ -293,12 +297,14 @@ https://bundlephobia.com/ - узнай сколько займет библио�
 
 ## RTK работа с Store:
 ### Струкруга директирии в FSD:
+
     ArticlePage > model > selectors
                           services
                           slices
                           types
 
  ### Services > Selectors > articlesPageSelectors.ts:
+ 
     import { StateSchema } from 'app/providers/StoreProvider';
     import { ArticleSortField, ArticleType, ArticleView } from 'entities/Article';
     
@@ -315,6 +321,7 @@ https://bundlephobia.com/ - узнай сколько займет библио�
     export const getArticlesPageType = (state: StateSchema) => state.articlesPage?.type ?? ArticleType.ALL;
 
  ### Services > fetchArticlesList > fetchArticlesList.ts:
+ 
     import { createAsyncThunk } from '@reduxjs/toolkit';
     import { ThunkConfig } from 'app/providers/StoreProvider';
     import { Article, ArticleType } from 'entities/Article';
@@ -375,6 +382,7 @@ https://bundlephobia.com/ - узнай сколько займет библио�
         );
 
  ### Services > fetchNextArticlesPage > fetchNextArticlesPage.ts:
+ 
     import { createAsyncThunk } from '@reduxjs/toolkit';
     import { ThunkConfig } from 'app/providers/StoreProvider';
     import {
@@ -405,6 +413,7 @@ https://bundlephobia.com/ - узнай сколько займет библио�
         );
 
  ### Services > initArticlesPage > initArticlesPage.ts:
+ 
     import { createAsyncThunk } from '@reduxjs/toolkit';
     import { ThunkConfig } from 'app/providers/StoreProvider';
     import { ArticleSortField, ArticleType } from 'entities/Article';
@@ -449,6 +458,7 @@ https://bundlephobia.com/ - узнай сколько займет библио�
         );
 
   ### Services > slices > articlesPageSlice.ts:
+  
     import { createEntityAdapter, createSlice, PayloadAction } from '@reduxjs/toolkit';
     import { StateSchema } from 'app/providers/StoreProvider';
     import {
@@ -547,6 +557,7 @@ https://bundlephobia.com/ - узнай сколько займет библио�
     } = articlesPageSlice;
 
   ### Services > types > articlesPageSchema.ts:
+  
     import { EntityState } from '@reduxjs/toolkit';
     import {
         Article, ArticleView, ArticleSortField, ArticleType,
@@ -572,6 +583,7 @@ https://bundlephobia.com/ - узнай сколько займет библио�
     }
 
 ## Работа ЛОКАЛЬНО со своим JSON-SERVER:
+
     const fs = require('fs');
     const jsonServer = require('json-server');
     const path = require('path');
@@ -632,12 +644,14 @@ https://bundlephobia.com/ - узнай сколько займет библио�
 
 ## Работа с путями (Router):
 ### Структура директории:
+
     app > providers > router >    ui   >   AppRouter.tsx
                       StoreProvider        RequireAuth.tsx
                       ThemeProvider
                       ErrorBoundary
 
 ### AppRouter.tsx :
+
     import React, { memo, Suspense, useCallback } from 'react';
     import { Route, Routes } from 'react-router-dom';
     import { PageLoader } from 'widgets/PageLoader/PageLoader';
@@ -670,6 +684,7 @@ https://bundlephobia.com/ - узнай сколько займет библио�
     export default memo(AppRouter);
 
 ### RequireAuth.tsx :
+
     import { useSelector } from 'react-redux';
     import { getUserAuthData } from 'entities/User';
     import { Navigate, useLocation } from 'react-router-dom';
@@ -771,7 +786,8 @@ https://bundlephobia.com/ - узнай сколько займет библио�
           },
       };
 
-## ErrorBoundary
+## ErrorBoundary:
+
     import React, { ErrorInfo, ReactNode, Suspense } from 'react';
     import { ErrorPage } from 'widgets/ErrorPage/ui/ErrorPage';
     
@@ -820,6 +836,7 @@ https://bundlephobia.com/ - узнай сколько займет библио�
     export default ErrorBoundary;
 
 ## Кастомный хук Троттлинг - useThrottle
+
     import { useCallback, useRef } from 'react';
     
     export function useThrottle(callback: (...args: any[]) => void, delay: number) {
@@ -838,6 +855,7 @@ https://bundlephobia.com/ - узнай сколько займет библио�
     }
 
 ## Кастомный хук бесконечный скролл - useInfiniteScroll
+
     import { MutableRefObject, useEffect, useRef } from 'react';
     
     export interface UseInfiniteScrollOptions {
@@ -879,6 +897,7 @@ https://bundlephobia.com/ - узнай сколько займет библио�
     }
 
 ## Кастомный хук эффекта наведения - useHover
+
     import { useCallback, useMemo, useState } from 'react';
     
     interface UseHoverBind {
@@ -909,6 +928,7 @@ https://bundlephobia.com/ - узнай сколько займет библио�
     };
 
   ## Кастомный хук debounce - useDebounce
+  
     import { MutableRefObject, useCallback, useRef } from 'react';
     
     export function useDebounce(callback: (...args: any[]) => void, delay: number) {
@@ -925,6 +945,7 @@ https://bundlephobia.com/ - узнай сколько займет библио�
     }
 
 ## Функция для наложения стилей на модуль - classNames
+
     export type Mods = Record<string, boolean | string | undefined>
     
     export function classNames(
@@ -943,6 +964,7 @@ https://bundlephobia.com/ - узнай сколько займет библио�
     }
 
  ### Как ей пользоваться?
+ 
     export const ArticleCodeBlockComponent = memo((props: ArticleCodeBlockComponentProps) => {
         const { className, block } = props;
         const { t } = useTranslation();
