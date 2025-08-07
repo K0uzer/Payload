@@ -18,26 +18,28 @@
 
 
 # React + ecosystem
-
+- https://use-gesture.netlify.app/docs/gestures/ - drag-and-drop 
+- https://www.npmjs.com/package/react-device-detect - помогает узнать размер экрана 
+- https://floating-ui.com/ - для работы с popover, popup, их скролл и т.п.
 
 # Builder
 
 
 # Tests
-
+- https://jestjs.io/docs/tutorial-react 
+- https://testing-library.com/docs/queries/about/
 
 # Safety
 
 
 # Asymptotic complexity
-
+- https://big-o-calculator.vercel.app/
+- https://www.bigocalc.com/
 
 # UI-kit
 - https://headlessui.com/ - headless-ui
 - https://react-spectrum.adobe.com/react-aria/index.html - hooks, functions
-- https://floating-ui.com/ - для работы с popover, popup, их скролл и т.п.
 - https://react-spring.dev/docs
-- https://www.npmjs.com/package/react-device-detect - помогает узнать размер экрана 
 # Bundle
 https://bundlephobia.com/ - узнай сколько займет библиотека в бандле и устройство
 
