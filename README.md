@@ -36,9 +36,10 @@
 - https://headlessui.com/ - headless-ui
 - https://react-spectrum.adobe.com/react-aria/index.html - hooks, functions
 - https://floating-ui.com/ - для работы с popover, popup, их скролл и т.п.
-  
+- https://react-spring.dev/docs
+- https://www.npmjs.com/package/react-device-detect - помогает узнать размер экрана 
 # Bundle
-https://bundlephobia.com/ - узнай сколько займет библиотека в бандле
+https://bundlephobia.com/ - узнай сколько займет библиотека в бандле и устройство
 
 # Code helpers
 
