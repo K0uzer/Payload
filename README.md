@@ -28,6 +28,7 @@
 # Tests
 - https://jestjs.io/docs/tutorial-react 
 - https://testing-library.com/docs/queries/about/
+- https://loki.js.org/getting-started.html
 
 # Safety
 
