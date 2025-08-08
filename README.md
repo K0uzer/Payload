@@ -23,7 +23,7 @@
 - https://floating-ui.com/ - для работы с popover, popup, их скролл и т.п.
 
 # Builder
-
+- https://www.npmjs.com/package/eslint-plugin-unused-imports - не используемые импорты
 
 # Tests
 - https://jestjs.io/docs/tutorial-react 
