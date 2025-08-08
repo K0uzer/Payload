@@ -22,7 +22,7 @@
 - https://www.npmjs.com/package/react-device-detect - помогает узнать размер экрана 
 - https://floating-ui.com/ - для работы с popover, popup, их скролл и т.п.
 
-# Builder
+# Lint
 - https://www.npmjs.com/package/eslint-plugin-unused-imports - не используемые импорты
 - https://www.npmjs.com/package/eslint-plugin-import - работа с импортами
 
