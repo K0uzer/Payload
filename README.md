@@ -24,6 +24,7 @@
 
 # Builder
 - https://www.npmjs.com/package/eslint-plugin-unused-imports - не используемые импорты
+- https://www.npmjs.com/package/eslint-plugin-import - работа с импортами
 
 # Tests
 - https://jestjs.io/docs/tutorial-react 
@@ -61,6 +62,8 @@ https://bundlephobia.com/ - узнай сколько займет библио�
     Shared
 
 ## Storybook: 
+- https://www.npmjs.com/package/eslint-plugin-import - само приложение
+- [npm i storybook-addon-themes](https://www.npmjs.com/package/storybook-addon-themes) - смена темы в Storybook
 
 ### Кнопка:
 
