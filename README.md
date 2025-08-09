@@ -49,6 +49,62 @@ https://bundlephobia.com/ - узнай сколько займет библио�
 
 # Code helpers
 
+## Dev Tools
+
+Mock Service Worker (MSW)
+Зачем: Мокает API прямо в браузере, убирая зависимость от бэкенда.
+
+    Ссылка: https://mswjs.io/
+
+Пример в src/mocks/browser.ts:
+
+    import { setupWorker } from 'msw';
+    import { handlers } from './handlers';
+    export const worker = setupWorker(...handlers);
+
+## Отлавливание лишних ререндеры React-компонентов
+
+    Ссылка: https://github.com/welldone-software/why-did-you-render
+
+Как подключить:
+
+    npm install @welldone-software/why-did-you-render
+
+Вход в index.tsx:
+
+    if (process.env.NODE_ENV === 'development') {
+      const whyDidYouRender = require('@welldone-software/why-did-you-render');
+      whyDidYouRender(React, { trackAllPureComponents: true });
+    }
+
+## Commitlint + cz-cli - Единый формат коммитов
+
+Ссылка: https://commitlint.js.org/
+
+    npm install --save-dev @commitlint/config-conventional @commitlint/cli
+
+
+## CLI-генератор FSD-срезов
+
+Зачем: Автоматически создаёт структуру по Feature-Sliced Design.
+Как подключить: Можно сделать plopfile.js и использовать Plop.js.
+
+    npm install --save-dev plop
+
+## Knip — анализ неиспользуемого кода
+
+Зачем: Находит неиспользуемые импорты, файлы и зависимости.
+Ссылка: https://github.com/webpro/knip
+
+    npx knip
+
+
+## CI/CD и автоматизация
+
+1. Параллельный запуск тестов и линтеров
+Зачем: Ускоряет CI, так как задачи выполняются одновременно.
+Как подключить: Добавить несколько job в GitHub Actions с зависимостями между ними.
+
 ## Простой пример CI
 
     Вот простой пример CI-конфигурации для GitHub Actions, которая будет автоматически запускать тесты репозитория при каждом пуше и pull request.
@@ -102,6 +158,25 @@ https://bundlephobia.com/ - узнай сколько займет библио�
     npm ci устанавливает зависимости из package-lock.json.
     
     npm test запускает тесты.
+
+2. Кэширование зависимостей и сборки
+Зачем: Уменьшает время сборки на CI.
+Как подключить: Использовать actions/cache для node_modules и .vite / .webpack-cache.
+
+          - uses: actions/cache@v4
+            with:
+              path: |
+                ~/.npm
+                .vite
+              key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+
+3. Автоматический деплой Storybook и приложения
+Зачем: Чтобы всегда была доступна актуальная сборка UI и стейджинг приложения.
+Как подключить: Для Storybook — Chromatic или деплой на GitHub Pages.
+
+- name: Deploy Storybook
+  run: npm run storybook:build && npx gh-pages -d storybook-static
+
 
 ## Cypress.config.js - настройка E2E теста
 
