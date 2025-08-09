@@ -455,7 +455,7 @@ Mock Service Worker (MSW)
         () => import('./ArticlesPage'),
     );
     
-## ActiclePage.tsx:
+### ActiclePage.tsx:
 
     import { classNames } from 'shared/lib/classNames/classNames';
     import { useTranslation } from 'react-i18next';
