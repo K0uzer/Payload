@@ -1,5 +1,6 @@
 # Payload
-- Repository with useful links for app development
+- Информация бералась из:
+ 1. https://github.com/K0uzer/production-project-95625fa1c42f772092f37824ef52a4be1fa467f9
 
 # SCSS/CSS/CSS-IN-JS
 
