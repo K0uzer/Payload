@@ -45,8 +45,8 @@
 - https://react-spectrum.adobe.com/react-aria/index.html - hooks, functions
 - https://react-spring.dev/docs
 # Bundle
-https://bundlephobia.com/ - узнай сколько займет библиотека в бандле и устройство
-
+- https://bundlephobia.com/ - узнай сколько займет библиотека в бандле и устройство
+- Хочешь ускорить сборку? Разбей на несколько процессов, так же ts и tsx должны быть разбельными в процессах! vite?
 # Code helpers
 
 ## Dev Tools
@@ -105,7 +105,7 @@ Mock Service Worker (MSW)
 Зачем: Ускоряет CI, так как задачи выполняются одновременно.
 Как подключить: Добавить несколько job в GitHub Actions с зависимостями между ними.
 
-## Простой пример CI
+### Простой пример CI
 
     Вот простой пример CI-конфигурации для GitHub Actions, которая будет автоматически запускать тесты репозитория при каждом пуше и pull request.
     
