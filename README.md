@@ -31,7 +31,7 @@
 - https://jestjs.io/docs/tutorial-react 
 - https://testing-library.com/docs/queries/about/
 - https://loki.js.org/getting-started.html
-- https://www.cypress.io/ - e2e тесты ( отлавливаем ошибки уже на реальных данных )
+- https://www.cypress.io/ - e2e тесты ( отлавливаем ошибки уже на реальных данных, тоесть проверка глобальной работоспособности проекта в связке с бэком. НО! e2e тесты пишутся только для чего-то глобального т.к. они очень дорогие! поэтому сначало все покрой unit и скрин тестами, а только потом e2e! )
 - https://www.npmjs.com/package/husky - husky ( запуск пре-коммитов ( тесты, линтеры и т.д. ) )
 
 # Safety
