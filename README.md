@@ -50,6 +50,130 @@
 - Хочешь ускорить сборку? Разбей на несколько процессов, так же ts и tsx должны быть разбельными в процессах! vite?
 # Code helpers
 
+## NGINX.CONFIG
+
+    server {
+            root /var/www/production_project/html;
+    
+            index index.html index.htm index.nginx-debian.html;
+    
+            server_name productionapputv.ru www.productionapputv.ru;
+    
+            location  ~ ^/api/(.*)$ {
+                proxy_pass   $scheme://80.93.190.163:8443/$1$is_args$args;
+                proxy_redirect     off;
+                proxy_set_header   Host             $host;
+                proxy_set_header   X-Real-IP        $remote_addr;
+                proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for;
+            }
+    
+            location / {
+                    try_files $uri $uri/ /index.html;
+            }
+    
+    
+        listen [::]:443 ssl ipv6only=on; # managed by Certbot
+        listen 443 ssl; # managed by Certbot
+        ssl_certificate /etc/letsencrypt/live/productionapputv.ru/fullchain.pem; # managed by Certbot
+        ssl_certificate_key /etc/letsencrypt/live/productionapputv.ru/privkey.pem; # managed by Certbot
+        include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+        ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+    
+    
+    }
+    server {
+        if ($host = www.productionapputv.ru) {
+            return 301 https://$host$request_uri;
+        } # managed by Certbot
+    
+    
+        if ($host = productionapputv.ru) {
+            return 301 https://$host$request_uri;
+        } # managed by Certbot
+    
+    
+            listen 80;
+            listen [::]:80;
+    
+            server_name productionapputv.ru www.productionapputv.ru;
+        return 404; # managed by Certbot
+    
+    }
+
+## Пример BASH-SCRIPT
+
+    cd ~/production-project
+    npm run build:prod
+    
+    rm -rf ~/../var/www/production_project/html
+    mv ~/production-project/build ~/../var/www/production_project/html
+
+## Пример Фича-флага для проекта
+
+ToggleFeatures.tsx
+
+    import { ReactElement } from 'react';
+    import { FeatureFlags } from '@/shared/types/featureFlags';
+    import { getFeatureFlag } from '../setGetFeatures';
+    
+    interface ToggleFeaturesProps {
+        feature: keyof FeatureFlags;
+        on: ReactElement;
+        off: ReactElement;
+    }
+    
+    export const ToggleFeatures = (props: ToggleFeaturesProps) => {
+        const { on, off, feature } = props;
+    
+        if (getFeatureFlag(feature)) {
+            return on;
+        }
+    
+        return off;
+    };
+
+Геттеры и сеттеры для фича-флага - setGetFuatures.ts
+
+    import { FeatureFlags } from '@/shared/types/featureFlags';
+    
+    // ФИЧИ НЕ МЕНЯЮТСЯ В ХОДЕ СЕССИИ, ИХ НЕОБЯЗАТЕЛЬНО ДЕЛАТЬ РЕАКТИВНЫМИ!
+    let featureFlags: FeatureFlags;
+    
+    export function setFeatureFlags(newFeatureFlags?: FeatureFlags) {
+        if (newFeatureFlags) {
+            featureFlags = newFeatureFlags;
+        }
+    }
+    
+    export function getFeatureFlag(flag: keyof FeatureFlags) {
+        return featureFlags[flag];
+    }
+
+Переключатель с дженериком - toggleFeatures.ts
+
+    import { FeatureFlags } from '@/shared/types/featureFlags';
+    import { getFeatureFlag } from './setGetFeatures';
+    
+    interface ToggleFeaturesOptions<T> {
+        name: keyof FeatureFlags;
+        on: () => T;
+        off: () => T;
+    }
+    
+    export function toggleFeatures<T>({
+        off,
+        on,
+        name,
+    }: ToggleFeaturesOptions<T>): T {
+        if (getFeatureFlag(name)) {
+            return on();
+        }
+    
+        return off();
+    }
+
+
+
 ## Dev Tools
 
 Mock Service Worker (MSW)
