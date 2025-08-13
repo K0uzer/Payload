@@ -542,7 +542,7 @@ Mock Service Worker (MSW)
     
     npx lint-staged
 
-## Структура директорий c FSD: 
+## Структура директорий c FSD: https://feature-sliced.design/docs/reference/layers
 
     App
      ^
