@@ -1446,6 +1446,56 @@ Mock Service Worker (MSW)
         }, [callback, delay]);
     }
 
+## Кастомный React hook form
+    
+    import React from "react";
+    import { useForm } from "react-hook-form";
+    
+    function App() {
+      const { register, handleSubmit, errors } = useForm();
+      const onSubmit = (data) => {
+        // logs {firstName:"exampleFirstName", lastName:"exampleLastName"}
+        console.log(data);
+      };
+    
+      return (
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <input name="firstName" ref={register} />
+          <input name="lastName" ref={register({ required: true })} />
+          {errors.lastName && <span>"Last name is a required field."</span>}
+          <input name="age" ref={register({ required: true })} />
+          {errors.age && <span>"Please enter number for age."</span>}
+          <input type="submit" />
+        </form>
+      );
+    }
+
+## Кастомный хук Portal
+
+    import React, { useState } from "react";
+    import usePortal from "react-useportal";
+    
+    const Example = () => {
+    const { ref, openPortal, closePortal, isOpen, Portal } = usePortal()
+    
+        return (
+          <>
+        <button ref={ref} onClick={() => openPortal()}>
+           Open Portal
+        </button>
+         {isOpen && (
+           <Portal>
+             <p>
+               This Portal handles its own state.{' '}
+               <button onClick={closePortal}>Close me!</button>, hit ESC or
+               click outside of me.
+             </p>
+           </Portal>
+         )}
+           </>
+     )
+    }
+
 ## Функция для наложения стилей на модуль - classNames
 
     export type Mods = Record<string, boolean | string | undefined>
